@@ -24,5 +24,8 @@
         "npm --prefix \"$RESOURCE_DIR\" run lint"
       ]
     }
-  ]
+  ],
+  "database": {
+    "rules": "databse.rules.json"
+  }
 }
