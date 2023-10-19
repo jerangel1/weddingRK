@@ -1,32 +1,68 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDP2nNxKHlkjwQJZhU592apdWyre_NflMo",
-    authDomain: "bodark20oct2023.firebaseapp.com",
-    projectId: "bodark20oct2023",
-    storageBucket: "bodark20oct2023.appspot.com",
-    messagingSenderId: "870785065222",
-    appId: "1:870785065222:web:ffe73a9c01784e7dde3e87",
-    measurementId: "G-221JP8FTZL"
+    datos privados
   };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-// Crea una referencia de almacenamiento para la foto que quieres subir.
-var storageRef = firebase.storage().ref();
+  const app = firebase.initializeApp(firebaseConfig);
 
-// Sube la foto a la referencia de almacenamiento.
-storageRef.child("my-photo.jpg").put(document.getElementById("archivo").files[0]).then(function(snapshot) {
-  // La foto se ha subido correctamente.
+  const storage = firebase.storage();
 
-  // Actualiza el sitio web para reflejar el cambio.
-  // ...
+  const inp = document.querySelector(".inp");
+  const progressbar = document.querySelector(".progress");
+  const img = document.querySelector(".img");
+  const fileData = document.querySelector(".filedata");
+  const loading = document.querySelector(".loading");
+  let file;
+  let fileName;
+  let progress;
+  let isLoading = false;
+  let uploadedFileName;
+  const selectImage = () => {
+    inp.click();
+  };
+  const getImageData = (e) => {
+    file = e.target.files[0];
+    fileName = Math.round(Math.random() * 9999) + file.name;
+    if (fileName) {
+      fileData.style.display = "block";
+    }
+    fileData.innerHTML = fileName;
+    console.log(file, fileName);
+  };
 
-  // Obtén el nombre del usuario.
-  var nombre = document.getElementById("nombre").value;
-
-  // Almacena el nombre del usuario junto con la foto.
-  snapshot.ref.setMetadata({
-    nombre: nombre
-  });
-});
+  const uploadImage = () => {
+    loading.style.display = "block";
+    const storageRef = storage.ref().child("myimages");
+    const folderRef = storageRef.child(fileName);
+    const uploadtask = folderRef.put(file);
+    uploadtask.on(
+      "state_changed",
+      (snapshot) => {
+        console.log("Snapshot", snapshot.ref.name);
+        progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progress = Math.round(progress);
+        progressbar.style.width = progress + "%";
+        progressbar.innerHTML = progress + "%";
+        uploadedFileName = snapshot.ref.name;
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("myimages")
+          .child(uploadedFileName)
+          .getDownloadURL()
+          .then((url) => {
+            console.log("URL", url);
+            if (!url) {
+              img.style.display = "none";
+            } else {
+              img.style.display = "block";
+              loading.style.display = "none";
+            }
+            img.setAttribute("src", url);
+          });
+        console.log("File Uploaded Successfully");
+      }
+    );
+  };

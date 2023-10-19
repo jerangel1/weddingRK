@@ -1,0 +1,166 @@
+root {
+  --color-principal: #2c2e28;
+  --color-secundario: #777370;
+  --color-botones: black;
+  --colortexto: #ffffff;
+}
+
+* {
+  /*font-family: 'Italiana', sans-serif;*/
+  margin: 0 auto;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background-image: url(./background/WFN3.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.logo img {
+  width: 75%;
+  height: 45%;
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: -50px;
+}
+
+.upload {
+  text-align: center;
+  max-width: 400px;
+}
+
+.upload img {
+  box-sizing: border-box;
+  width: 60%;
+  height: 80%;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20px !important;
+}
+
+p {
+  margin-top: -85px !important;
+  font-size: 24px;
+  font-weight: 200;
+  font-style: italic;
+}
+footer {
+margin-top: 120px;
+margin-bottom: 35px;
+}
+footer p {
+  margin-top: 150px;
+  text-align: center;
+  font-size: 12.5px;
+  margin-bottom: 120px !;
+}
+
+a {
+  color: var(--color-principal) !important;
+  text-decoration: none !important;
+  font-size: 15px;
+}
+
+/* boton de carga estilos*/
+.inp {
+  display: none;
+}
+
+.progressBar {
+  width: 250px;
+  background: rgb(196, 193, 193);
+  padding: 10px 10px;
+  position: relative;
+  border-radius: 25px;;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(75deg, rgb(192, 247, 244), rgb(171, 170, 241));
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 25px;
+}
+
+.img {
+  height: 200px;
+  width: 250px;
+  margin: 5px;
+  border: 1px solid crimson;
+  -o-object-fit: fill;
+  object-fit: fill;
+  display: none;
+}
+
+.selectImage {
+  background: black;
+  font-style: italic;
+  color: whitesmoke;
+  padding: 4px 20px;
+  border-radius: 10px;
+}
+
+.upload-btn {
+  background: black;
+  color: whitesmoke;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  margin: 10px 0;
+  box-shadow: 0 0 5px 1px rgb(8, 7, 7);
+}
+
+.metaData {
+  display: flex;
+}
+
+.filedata {
+  background: rgba(245, 245, 245, 0.911);
+  padding: 10px 15px;
+  font-size: 14px;
+  max-width: 100px;
+  text-overflow: ellipsis;
+  border-radius: 20px;
+  display: none;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  display: none;
+  border-radius: 25px;
+}
+
+.completeMsg {
+  color: white;
+}
+
+/*# sourceMappingURL=index.css.map */
